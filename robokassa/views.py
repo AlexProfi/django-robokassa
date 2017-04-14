@@ -25,7 +25,7 @@ def receive_result(request):
         # дополнительные действия с заказом (например, смену его статуса) можно
         # осуществить в обработчике сигнала robokassa.signals.result_received
         result_received.send(sender = notification, InvId = id, OutSum = sum,
-                             extra = form.extra_params())
+                             extra = form.extra_params(), request = request)
 
         return HttpResponse('OK%s' % id)
     return HttpResponse('error: bad signature')
